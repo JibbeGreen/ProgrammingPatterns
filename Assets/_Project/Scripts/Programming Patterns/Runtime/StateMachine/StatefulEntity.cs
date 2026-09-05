@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Patterns.StateMachine.StateMachine {
+namespace Patterns.StateMachine {
     public abstract class StatefulEntity : MonoBehaviour {
         protected StateMachine stateMachine;
 

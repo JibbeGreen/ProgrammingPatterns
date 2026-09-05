@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Patterns.StateMachine.StateMachine 
+namespace Patterns.StateMachine 
 {
     public abstract class Transition {
         public IState To { get; protected set; }
