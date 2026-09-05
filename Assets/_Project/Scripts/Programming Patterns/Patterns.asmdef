@@ -1,6 +1,6 @@
 {
-    "name": "ProgrammingPatterns",
-    "rootNamespace": "ProgrammingPatterns",
+    "name": "Patterns",
+    "rootNamespace": "Patterns",
     "references": [
         "UnityUtils"
     ],
