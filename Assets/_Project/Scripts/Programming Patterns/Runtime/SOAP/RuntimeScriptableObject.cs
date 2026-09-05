@@ -1,21 +1,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class RuntimeScriptableObject : ScriptableObject
+namespace Patterns.SOAP
 {
-    static readonly List<RuntimeScriptableObject> Instances = new();
-
-    void OnEnable() => Instances.Add(this);
-    void OnDisable() => Instances.Remove(this);
-
-    protected abstract void OnReset();
-
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    static void ResetAllInstances()
+    public abstract class RuntimeScriptableObject : ScriptableObject
     {
-        foreach (var instance in Instances)
+        static readonly List<RuntimeScriptableObject> Instances = new();
+
+        void OnEnable() => Instances.Add(this);
+        void OnDisable() => Instances.Remove(this);
+
+        protected abstract void OnReset();
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static void ResetAllInstances()
         {
-            instance.OnReset();
+            foreach (var instance in Instances)
+            {
+                instance.OnReset();
+            }
         }
     }
 }

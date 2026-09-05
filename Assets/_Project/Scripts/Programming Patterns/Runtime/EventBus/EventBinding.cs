@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ProgrammingPatterns
+namespace Patterns.EventBus
 {
     public interface IEventBinding<T> {
         public Action<T> OnEvent { get; set; }
@@ -30,5 +30,4 @@ namespace ProgrammingPatterns
         public void Add(Action<T> onEvent) => this.onEvent += onEvent;
         public void Remove(Action<T> onEvent) => this.onEvent -= onEvent;
     }
-    
 }

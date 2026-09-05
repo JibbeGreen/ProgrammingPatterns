@@ -1,4 +1,4 @@
-namespace ProgrammingPatterns 
+namespace Patterns.Command
 {
     public interface IUndoableCommand : ICommand
     {

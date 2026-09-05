@@ -1,24 +1,27 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(menuName = "Variables/Int Variable")]
-public class IntVariable : RuntimeScriptableObject 
+namespace Patterns.SOAP
 {
-    [SerializeField] int initialValue;
-    [SerializeField] int value;
-
-    public event UnityAction<int> OnValueChanged = delegate { };
-
-    public int Value 
+    [CreateAssetMenu(menuName = "Variables/Int Variable")]
+    public class IntVariable : RuntimeScriptableObject 
     {
-        get => value;
-        set 
-        {
-            if (this.value == value) return;
-            this.value = value;
-            OnValueChanged.Invoke(value);
-        }
-    }
+        [SerializeField] int initialValue;
+        [SerializeField] int value;
 
-    protected override void OnReset() => value = initialValue;
+        public event UnityAction<int> OnValueChanged = delegate { };
+
+        public int Value 
+        {
+            get => value;
+            set 
+            {
+                if (this.value == value) return;
+                this.value = value;
+                OnValueChanged.Invoke(value);
+            }
+        }
+
+        protected override void OnReset() => value = initialValue;
+    }
 }

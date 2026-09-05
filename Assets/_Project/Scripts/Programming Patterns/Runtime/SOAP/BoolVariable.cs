@@ -1,24 +1,27 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(menuName = "Variables/Bool Variable")]
-public class BoolVariable : RuntimeScriptableObject 
+namespace Patterns.SOAP
 {
-    [SerializeField] bool initialValue;
-    [SerializeField] bool value;
-
-    public event UnityAction<bool> OnValueChanged = delegate { };
-
-    public bool Value 
+    [CreateAssetMenu(menuName = "Variables/Bool Variable")]
+    public class BoolVariable : RuntimeScriptableObject 
     {
-        get => value;
-        set 
-        {
-            if (this.value == value) return;
-            this.value = value;
-            OnValueChanged.Invoke(value);
-        }
-    }
+        [SerializeField] bool initialValue;
+        [SerializeField] bool value;
 
-    protected override void OnReset() => value = initialValue;
+        public event UnityAction<bool> OnValueChanged = delegate { };
+
+        public bool Value 
+        {
+            get => value;
+            set 
+            {
+                if (this.value == value) return;
+                this.value = value;
+                OnValueChanged.Invoke(value);
+            }
+        }
+
+        protected override void OnReset() => value = initialValue;
+    }
 }

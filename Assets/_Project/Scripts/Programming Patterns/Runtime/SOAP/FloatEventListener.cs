@@ -1,4 +1,7 @@
-public class FloatEventListener : GameEventListener<float>
+namespace Patterns.SOAP
 {
-    
+    public class FloatEventListener : GameEventListener<float>
+    {
+        
+    }
 }

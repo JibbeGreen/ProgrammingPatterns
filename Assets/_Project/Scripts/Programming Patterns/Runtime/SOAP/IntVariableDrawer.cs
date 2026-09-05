@@ -2,48 +2,51 @@ using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using UnityEditor;
 
-[CustomPropertyDrawer(typeof(IntVariable))]
-public class IntVariableDrawer : PropertyDrawer 
+namespace Patterns.SOAP.Editor
 {
-    public override VisualElement CreatePropertyGUI(SerializedProperty property) 
+    [CustomPropertyDrawer(typeof(IntVariable))]
+    public class IntVariableDrawer : PropertyDrawer 
     {
-        var container = new VisualElement();
-
-        var objectField = new ObjectField(property.displayName) 
+        public override VisualElement CreatePropertyGUI(SerializedProperty property) 
         {
-            objectType = typeof(IntVariable)
-        };
-        objectField.BindProperty(property);
+            var container = new VisualElement();
 
-        var valueLabel = new Label();
-        valueLabel.style.paddingLeft = 20;
-
-        container.Add(objectField);
-        container.Add(valueLabel);
-
-        objectField.RegisterValueChangedCallback(
-            evt => 
+            var objectField = new ObjectField(property.displayName) 
             {
-                var variable = evt.newValue as IntVariable;
-                if (variable != null) 
+                objectType = typeof(IntVariable)
+            };
+            objectField.BindProperty(property);
+
+            var valueLabel = new Label();
+            valueLabel.style.paddingLeft = 20;
+
+            container.Add(objectField);
+            container.Add(valueLabel);
+
+            objectField.RegisterValueChangedCallback(
+                evt => 
                 {
-                    valueLabel.text = $"Current Value: {variable. Value}";
-                    variable. OnValueChanged += newValue => valueLabel.text = $"Current Value: {newValue}";
-                } 
-                else 
-                {
-                    valueLabel.text = string.Empty;
+                    var variable = evt.newValue as IntVariable;
+                    if (variable != null) 
+                    {
+                        valueLabel.text = $"Current Value: {variable. Value}";
+                        variable. OnValueChanged += newValue => valueLabel.text = $"Current Value: {newValue}";
+                    } 
+                    else 
+                    {
+                        valueLabel.text = string.Empty;
+                    }
                 }
+            );
+
+            var currentVariable = property.objectReferenceValue as IntVariable;
+            if (currentVariable != null) 
+            {
+                valueLabel.text = $"Current Value: {currentVariable. Value}";
+                currentVariable. OnValueChanged += newValue => valueLabel. text = $"Current Value: {newValue}";
             }
-        );
 
-        var currentVariable = property.objectReferenceValue as IntVariable;
-        if (currentVariable != null) 
-        {
-            valueLabel.text = $"Current Value: {currentVariable. Value}";
-            currentVariable. OnValueChanged += newValue => valueLabel. text = $"Current Value: {newValue}";
+            return container;
         }
-
-        return container;
     }
 }

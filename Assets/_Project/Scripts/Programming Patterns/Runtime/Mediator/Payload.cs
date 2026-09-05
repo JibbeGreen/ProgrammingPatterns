@@ -1,37 +1,40 @@
 using UnityEngine;
-using ProgrammingPatterns;
+using Patterns.Visitor;
 
-public abstract class Payload<TData> : IVisitor
+namespace Patterns.Mediator
 {
-    public abstract TData Content {get;set;}
-
-    public abstract void Visit<T>(T p_visitable) where T : Component, IVisitable;
-}
-
-public class MessagePayload : Payload<string>
-{
-    public GameObject Source { get; set; }
-    public override string Content { get; set; }
-
-    private MessagePayload() { }
-
-    public override void Visit<T>(T p_visitable)
+    public abstract class Payload<TData> : IVisitor
     {
-        Debug.Log($"{p_visitable.name} received message from {Source.name}: {Content}");
+        public abstract TData Content {get;set;}
+
+        public abstract void Visit<T>(T p_visitable) where T : Component, IVisitable;
     }
 
-    public class Builder
+    public class MessagePayload : Payload<string>
     {
-        MessagePayload _payload = new MessagePayload();
+        public GameObject Source { get; set; }
+        public override string Content { get; set; }
 
-        public Builder(GameObject source) => _payload.Source = source;
+        private MessagePayload() { }
 
-        public Builder WithContent(string content)
+        public override void Visit<T>(T p_visitable)
         {
-            _payload.Content = content;
-            return this;
+            Debug.Log($"{p_visitable.name} received message from {Source.name}: {Content}");
         }
 
-        public MessagePayload Build() => _payload;
+        public class Builder
+        {
+            MessagePayload _payload = new MessagePayload();
+
+            public Builder(GameObject source) => _payload.Source = source;
+
+            public Builder WithContent(string content)
+            {
+                _payload.Content = content;
+                return this;
+            }
+
+            public MessagePayload Build() => _payload;
+        }
     }
 }

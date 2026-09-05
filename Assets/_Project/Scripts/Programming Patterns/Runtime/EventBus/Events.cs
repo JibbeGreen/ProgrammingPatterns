@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace ProgrammingPatterns
+namespace Patterns.EventBus
 {
     public interface IEvent { }
 

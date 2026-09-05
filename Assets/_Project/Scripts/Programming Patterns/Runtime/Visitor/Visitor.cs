@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ProgrammingPatterns
+namespace Patterns.Visitor
 {
     public interface IVisitor
     {
