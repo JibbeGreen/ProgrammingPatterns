@@ -1,0 +1,5 @@
+{
+    "dependencies": {
+        "com.gitamend.unityutils": "https://github.com/adammyhre/Unity-Utils.git"
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "name": "com.greeny.patterns",
+    "version": "1.0.0",
+    "displayName": "Programming Patterns",
+    "description": "Variety of programming patterns.",
+    "unity": "2022.3",
+    "dependencies": {},
+    "keywords": [
+        "patterns",
+        "greeny",
+        "programming",
+        "design"
+    ],
+    "author": {
+        "name": "JibbeGreen",
+        "email": "contact.greenydev@gmail.com",
+        "url": "https://www.youtube.com/@greenygamedev"
+    },
+    "documentationUrl": "https://github.com/jibbegreen/Programming-Patterns/README.md"
+}
